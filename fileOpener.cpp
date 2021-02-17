@@ -7,6 +7,7 @@ string read_file_content(string fileName)
 {
 	string line;
 	char content;
+
 	fstream fileStream;
 	fileStream.open(fileName);
 	if(fileStream)
@@ -31,8 +32,8 @@ int gate_counter(string fileName)
 	int i = 0;
 	while (!count.empty())
 	{
-		char kekw = count.back();
-		if (kekw == '\n')	//detect new line
+		char enter = count.back();
+		if (enter == '\n')	//detect new line
 			i++;
 		count.pop_back();
 	}

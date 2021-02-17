@@ -12,18 +12,14 @@ using namespace std;
 
 int main()
 {
-	
 	int gateNumber = gate_counter("layout.txt");
 	string content = read_file_content("layout.txt");
-//	assign_elements(content,gateNumber);
-
-	string lul = "134";
-
-	int data = stoi(lul);
+	string values = read_file_content("values.txt");
 
 
+	assign_elements(content);
 
-
-	cout << data;
+	
+	
 	return 0;
 }
