@@ -29,7 +29,7 @@ int gate_counter(string fileName)
 {
 	string count;
 	count = read_file_content(fileName);
-	int i = 0;
+	int i = -1;
 	while (!count.empty())
 	{
 		char enter = count.back();

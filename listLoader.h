@@ -30,4 +30,4 @@ struct Schematics
 
 Schematics addElementToList(string role, int input_knot1, bool input_val1, int input_knot2, bool input_val2, int output_knot, bool output_val);
 
-void assign_elements(string content);
+Schematics assign_elements(string content, int gateNumber);

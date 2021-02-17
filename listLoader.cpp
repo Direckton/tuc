@@ -22,7 +22,7 @@ string reverse_string(string str)
 	return str;
 }
 
-void assign_elements(string content)
+Schematics assign_elements(string content,int gateNumber)
 {
 
 	list<Schematics> temp;
@@ -40,8 +40,15 @@ void assign_elements(string content)
 		{
 			switching_value = 0;
 			temp.emplace_front(addElementToList(role, in_knot1, false, in_knot2, false, out_knot, false));
+			content.pop_back();
+			gateNumber--;
+			if (gateNumber == 0)
+			{
+				it = temp.begin();
+				return *it;
+
+			}
 		}
-		
 		while(content.back() !=' ' and content.back() != '\n')
 		{
 			piece.push_back(content.back());

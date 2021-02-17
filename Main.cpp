@@ -17,7 +17,9 @@ int main()
 	string values = read_file_content("values.txt");
 
 
-	assign_elements(content);
+	list<Schematics> temp;
+	list<Schematics>::iterator it;
+	*it = assign_elements(content, gateNumber);
 
 	
 	
