@@ -22,10 +22,9 @@ string reverse_string(string str)
 	return str;
 }
 
-Schematics assign_elements(string content,int gateNumber)
+void assign_elements(string content,int gateNumber, list<Schematics> &temp)
 {
 
-	list<Schematics> temp;
 	list<Schematics>::iterator it = temp.begin();
 	int switching_value = 0;
 	string piece;
@@ -43,11 +42,8 @@ Schematics assign_elements(string content,int gateNumber)
 			content.pop_back();
 			gateNumber--;
 			if (gateNumber == 0)
-			{
-				it = temp.begin();
-				return *it;
+				return;
 
-			}
 		}
 		while(content.back() !=' ' and content.back() != '\n')
 		{
@@ -83,9 +79,16 @@ Schematics assign_elements(string content,int gateNumber)
 			content.pop_back();
 			switching_value++;
 		}
-
 		
-
 	}
 }
 
+void assign_values()
+{
+	string str = read_file_content("values.txt");
+
+	while (!str.empty())
+	{
+		
+	}
+}

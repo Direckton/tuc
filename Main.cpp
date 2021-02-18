@@ -1,5 +1,3 @@
-
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -10,18 +8,16 @@
 
 using namespace std;
 
+
 int main()
 {
 	int gateNumber = gate_counter("layout.txt");
 	string content = read_file_content("layout.txt");
 	string values = read_file_content("values.txt");
 
-
 	list<Schematics> temp;
 	list<Schematics>::iterator it;
-	*it = assign_elements(content, gateNumber);
+	assign_elements(content, gateNumber,temp);
 
-	
-	
 	return 0;
 }
