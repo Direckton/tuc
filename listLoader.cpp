@@ -83,12 +83,19 @@ void assign_elements(string content,int gateNumber, list<Schematics> &temp)
 	}
 }
 
-void assign_values()
+void assign_values(list<Schematics> temp)
 {
+	list<Schematics>::iterator it = temp.begin();
 	string str = read_file_content("values.txt");
+	int iteration = 0;
+	string line;
 
 	while (!str.empty())
 	{
-		
+		if(str.back()=='\n')
+		{
+			iteration++;
+			line.clear();
+		}
 	}
 }
