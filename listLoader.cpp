@@ -114,32 +114,40 @@ void assign_values(list<Schematics> temp)
 		}
 		reverse_string(line);
 
-	switch(switching_value)
-	{
-	case 0:
+		switch(switching_value)
+		{
+		case 0:
 		in_state2 = stoi(line);
 		switching_value++;
 		str.pop_back();
 		line.clear();
 		break;
-	case 1:
+		case 1:
 		in_knot2 = stoi(line);
 		switching_value++;
 		str.pop_back();
 		line.clear();
 		break;
-	case 2:
+		case 2:
 		in_state1 = stoi(line);
 		switching_value++;
 		str.pop_back();
 		line.clear();
 		break;
-	case 3:
+		case 3:
 		in_knot2 = stoi(line);
 		switching_value++;
 		line.clear();
 		break;
-	}
-		
+		}
+
+		if(in_knot1==it->input_knot1)
+		{
+			it->input_val1 = in_state1;
+		}
+		else if(in_knot1 == it->input_knot2)
+		{
+			it->input_val2 = in_state2;
+		}
 	}
 }
