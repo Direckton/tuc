@@ -20,7 +20,7 @@ string read_file_content(string fileName)
 		
 	}
 	fileStream.close();
-	line.pop_back();	//gets rid of dubed element form while loop
+	line.pop_back();	//gets rid of doubled element form while loop
 
 	return line;
 }

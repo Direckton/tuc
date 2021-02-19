@@ -18,6 +18,7 @@ int main()
 	list<Schematics> temp;
 	list<Schematics>::iterator it;
 	assign_elements(content, gateNumber,temp);
+	assign_values(temp);
 
 	return 0;
 }

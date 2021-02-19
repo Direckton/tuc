@@ -28,9 +28,9 @@ void assign_elements(string content,int gateNumber, list<Schematics> &temp)
 	list<Schematics>::iterator it = temp.begin();
 	int switching_value = 0;
 	string piece;
-	int out_knot;
-	int in_knot1;
-	int in_knot2;
+	int out_knot = 0;
+	int in_knot1 = 0;
+	int in_knot2 = 0;
 	string role;
 	
 	while (!content.empty())
@@ -84,11 +84,17 @@ void assign_elements(string content,int gateNumber, list<Schematics> &temp)
 }
 
 void assign_values(list<Schematics> temp)
-{
-	list<Schematics>::iterator it = temp.begin();
+{/*create secondary list which includes all the states and pass it on logic operator which
+	find the elements from that string in list  */
+	auto it = temp.begin();
 	string str = read_file_content("values.txt");
 	int iteration = 0;
-	string line;
+	int switching_value = 0;
+	string line,bitchTier;
+	int in_knot1 = 0;
+	int in_knot2 = 0;
+	bool in_state1;
+	bool in_state2;
 
 	while (!str.empty())
 	{
@@ -96,6 +102,44 @@ void assign_values(list<Schematics> temp)
 		{
 			iteration++;
 			line.clear();
+			str.pop_back();
+			switching_value = 0;
+			
 		}
+
+		while(str.back()!=' ' and str.back() != ':' and str.back() != '\n')
+		{
+			line.push_back(str.back());
+			str.pop_back();
+		}
+		reverse_string(line);
+
+	switch(switching_value)
+	{
+	case 0:
+		in_state2 = stoi(line);
+		switching_value++;
+		str.pop_back();
+		line.clear();
+		break;
+	case 1:
+		in_knot2 = stoi(line);
+		switching_value++;
+		str.pop_back();
+		line.clear();
+		break;
+	case 2:
+		in_state1 = stoi(line);
+		switching_value++;
+		str.pop_back();
+		line.clear();
+		break;
+	case 3:
+		in_knot2 = stoi(line);
+		switching_value++;
+		line.clear();
+		break;
+	}
+		
 	}
 }
