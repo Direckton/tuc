@@ -83,6 +83,30 @@ void assign_elements(string content,int gateNumber, list<Schematics> &temp)
 	}
 }
 
+void choose_input(int in_knot1, int in_knot2, bool in_state1, bool in_state2, list<Schematics>& temp)
+{
+
+	auto it = temp.begin();
+	int break_value = 0;
+	while (it != temp.end())
+	{
+		if (in_knot1 == it->input_knot1)
+		{
+			it->input_val1 = in_state1;
+			break_value++;
+		}
+		if (in_knot2 == it->input_knot2)
+		{
+			it->input_val2 = in_state2;
+			break_value++;
+		}
+		if (in_knot1 != it->input_knot1 or in_knot2 != it->input_knot2)
+			it++;
+		if (break_value == 2)
+			return;
+	}
+}
+
 void assign_values(list<Schematics> temp)
 {/*create secondary list which includes all the states and pass it on logic operator which
 	find the elements from that string in list  */
@@ -93,8 +117,8 @@ void assign_values(list<Schematics> temp)
 	string line,bitchTier;
 	int in_knot1 = 0;
 	int in_knot2 = 0;
-	bool in_state1;
-	bool in_state2;
+	bool in_state1=true;
+	bool in_state2=true;
 
 	while (!str.empty())
 	{
@@ -104,7 +128,7 @@ void assign_values(list<Schematics> temp)
 			line.clear();
 			str.pop_back();
 			switching_value = 0;
-			
+			choose_input(in_knot1, in_knot2, in_state1, in_state2, temp);
 		}
 
 		while(str.back()!=' ' and str.back() != ':' and str.back() != '\n')
@@ -135,19 +159,10 @@ void assign_values(list<Schematics> temp)
 		line.clear();
 		break;
 		case 3:
-		in_knot2 = stoi(line);
+		in_knot1 = stoi(line);
 		switching_value++;
 		line.clear();
 		break;
-		}
-
-		if(in_knot1==it->input_knot1)
-		{
-			it->input_val1 = in_state1;
-		}
-		else if(in_knot1 == it->input_knot2)
-		{
-			it->input_val2 = in_state2;
-		}
+		}	
 	}
 }
