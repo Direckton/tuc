@@ -17,10 +17,11 @@ bool gate(bool state1, bool state2, string gate)
 	if (gate == "NEG")
 		return !state1;
 }
-bool find_in_val( list<Schematics> temp, int input_knot)
+bool find_in_value( list<Schematics> temp, int input_knot)
 {
 	auto it = temp.begin();
-	it++;
+	while (it->output_knot != input_knot)
+		it++;
 	return it->output_val;
 	
 }
@@ -28,24 +29,45 @@ bool find_in_val( list<Schematics> temp, int input_knot)
 void calculate_outputs(list<Schematics> &temp, int in_knot1, int in_knot2)
 {
 	auto it=temp.begin();
-
+	auto it_supp = temp.begin();
+	
+	while (it != temp.end())
 	{
-		while (it != temp.end())
+		if (in_knot1 == it->input_knot1 and in_knot2 == it->input_knot2)
 		{
-			if (in_knot1 == it->input_knot1 and in_knot2 == it->input_knot2)
+			it->output_val = gate(it->input_val1, it->input_val2, it->role);
+			it++;
+		}
+		else
+		{
+			if(in_knot1 == it->input_knot1)
 			{
-				it->output_val = gate(it->input_val1, it->input_val2, it->role);
-				it++;
+				it_supp = temp.begin();
+				while(it_supp->input_knot1!=in_knot1)
+				{
+					it_supp++;
+				}
+				it->input_val1 = it_supp->input_val1;
 			}
 			else
+				it->input_val1=find_in_value(temp, it->input_knot1);
+			if(in_knot2 == it->input_knot2)
 			{
-				find_in_val(temp, it->input_knot1);
-				it->output_val = gate(it->input_val1, it->input_val2, it->role);
-				it++;
+				it_supp = temp.begin();
+				while (it_supp->input_knot2 != in_knot2)
+				{
+					it_supp++;
+				}
+				it->input_val2 = it_supp->input_val2;
 			}
-			
+			else
+				it->input_val2 = find_in_value(temp, it->input_knot2);
+			it->output_val = gate(it->input_val1, it->input_val2, it->role);
+			it++;
 		}
+		
 	}
+
 	
 	
 }
