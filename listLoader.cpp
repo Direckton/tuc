@@ -107,7 +107,7 @@ void choose_input(int in_knot1, int in_knot2, bool in_state1, bool in_state2, li
 	}
 }
 
-void assign_values(list<Schematics> temp)
+void assign_values(list<Schematics> &temp)
 {/*create secondary list which includes all the states and pass it on logic operator which
 	find the elements from that string in list  */
 	auto it = temp.begin();
@@ -168,4 +168,6 @@ void assign_values(list<Schematics> temp)
 		break;
 		}	
 	}
+	if(str.empty())
+		choose_input(in_knot1, in_knot2, in_state1, in_state2, temp);
 }

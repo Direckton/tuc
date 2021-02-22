@@ -12,8 +12,8 @@ using namespace std;
 
 int main()
 {
-	int gateNumber = gate_counter("layout.txt");
-	string content = read_file_content("layout.txt");
+	int gateNumber = gate_counter("layout2.txt");
+	string content = read_file_content("layout2.txt");
 	
 
 	list<Schematics> temp;
