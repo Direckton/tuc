@@ -114,7 +114,7 @@ void assign_values(list<Schematics> temp)
 	string str = read_file_content("values.txt");
 	int iteration = 0;
 	int switching_value = 0;
-	string line,bitchTier;
+	string line;
 	int in_knot1 = 0;
 	int in_knot2 = 0;
 	bool in_state1=true;
@@ -129,12 +129,15 @@ void assign_values(list<Schematics> temp)
 			str.pop_back();
 			switching_value = 0;
 			choose_input(in_knot1, in_knot2, in_state1, in_state2, temp);
+			
 		}
 
 		while(str.back()!=' ' and str.back() != ':' and str.back() != '\n')
 		{
 			line.push_back(str.back());
 			str.pop_back();
+			if (str.empty())
+				break;
 		}
 		reverse_string(line);
 

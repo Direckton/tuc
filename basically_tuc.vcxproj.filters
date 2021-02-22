@@ -35,5 +35,8 @@
     <ClInclude Include="listLoader.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="LogicOperator.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
