@@ -5,4 +5,6 @@
 
 using namespace std;
 
-string create_output(string input);
+string create_input(string input);
+
+string create_output(string output);

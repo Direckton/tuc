@@ -19,6 +19,8 @@ int main()
 	string output;
 	output.assign(values);
 
+	output = create_input(output);
+
 	output = create_output(output);
 
 	list<Schematics> temp;
