@@ -1,10 +1,9 @@
+#pragma once
+
 #include <string>
 #include <iostream>
 #include <list>
 #include "fileOpener.h"
-
-#pragma once
-
 using namespace std;
 
 struct Schematics
@@ -33,4 +32,4 @@ Schematics addElementToList(string role, int input_knot1, bool input_val1, int i
 
 void assign_elements(string content, int gateNumber, list<Schematics> &temp);
 
-void assign_values(list<Schematics> &temp);
+void assign_values(list<Schematics> &temp, string &str);

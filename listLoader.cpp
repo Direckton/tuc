@@ -107,11 +107,10 @@ void choose_input(int in_knot1, int in_knot2, bool in_state1, bool in_state2, li
 	}
 }
 
-void assign_values(list<Schematics> &temp)
+void assign_values(list<Schematics> &temp, string &str)
 {/*create secondary list which includes all the states and pass it on logic operator which
 	find the elements from that string in list  */
 	auto it = temp.begin();
-	string str = read_file_content("values.txt");
 	int iteration = 0;
 	int switching_value = 0;
 	string line;
@@ -119,7 +118,7 @@ void assign_values(list<Schematics> &temp)
 	int in_knot2 = 0;
 	bool in_state1=true;
 	bool in_state2=true;
-
+	
 	while (!str.empty())
 	{
 		if(str.back()=='\n')
@@ -129,7 +128,7 @@ void assign_values(list<Schematics> &temp)
 			str.pop_back();
 			switching_value = 0;
 			choose_input(in_knot1, in_knot2, in_state1, in_state2, temp);
-			
+			break;
 		}
 
 		while(str.back()!=' ' and str.back() != ':' and str.back() != '\n')
