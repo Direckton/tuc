@@ -20,13 +20,11 @@ int main()
 	output.assign(values);
 
 	output = create_input(output);
-
 	
-
 	list<Schematics> temp;
 	list<Schematics>::iterator it= temp.begin();
 	assign_elements(content, gateNumber,temp);
-	save_output_to_file("output.txt",output);
+	
 	
 	while (!values.empty())
 	{
@@ -34,7 +32,8 @@ int main()
 		assign_values(temp, values);
 		it = temp.begin();
 		calculate_outputs(temp, it->input_knot1, it->input_knot2);
-		output = create_output(output, content,it->output_val);
+		create_output(output, content, (find_value(temp, extract_output_int(content))));
 	}
+	save_output_to_file("output.txt",output);
 	return 0;
 }

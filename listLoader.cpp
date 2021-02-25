@@ -118,7 +118,6 @@ void assign_values(list<Schematics> &temp, string &str)
 {/*create secondary list which includes all the states and pass it on logic operator which
 	find the elements from that string in list  */
 	auto it = temp.begin();
-	int iteration = 0;
 	int switching_value = 0;
 	string line;
 	int in_knot1 = 0;
@@ -130,7 +129,6 @@ void assign_values(list<Schematics> &temp, string &str)
 	{
 		if(str.back()=='\n')
 		{
-			iteration++;
 			line.clear();
 			str.pop_back();
 			switching_value = 0;
@@ -176,4 +174,17 @@ void assign_values(list<Schematics> &temp, string &str)
 	}
 	if(str.empty())
 		choose_input(in_knot1, in_knot2, in_state1, in_state2, temp);
+}
+
+int extract_output_int(string content)
+{
+	int output;
+	string temp;
+	while(content.back()!=' ')
+	{
+		temp.push_back(content.back());
+		content.pop_back();
+	}
+	reverse_string(temp);
+	return stoi(temp);
 }

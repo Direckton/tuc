@@ -17,7 +17,7 @@ bool gate(bool state1, bool state2, string gate)
 	if (gate == "NEG")
 		return !state1;
 }
-bool find_in_value( list<Schematics> temp, int input_knot)
+bool find_value( list<Schematics> temp, int input_knot)
 {
 	auto it = temp.begin();
 	while (it->output_knot != input_knot)
@@ -50,7 +50,7 @@ void calculate_outputs(list<Schematics> &temp, int in_knot1, int in_knot2)
 				it->input_val1 = it_supp->input_val1;
 			}
 			else
-				it->input_val1=find_in_value(temp, it->input_knot1);
+				it->input_val1=find_value(temp, it->input_knot1);
 			if(in_knot2 == it->input_knot2)
 			{
 				it_supp = temp.begin();
@@ -61,7 +61,7 @@ void calculate_outputs(list<Schematics> &temp, int in_knot1, int in_knot2)
 				it->input_val2 = it_supp->input_val2;
 			}
 			else
-				it->input_val2 = find_in_value(temp, it->input_knot2);
+				it->input_val2 = find_value(temp, it->input_knot2);
 			it->output_val = gate(it->input_val1, it->input_val2, it->role);
 			it++;
 		}
