@@ -1,1 +1,4 @@
-output is 123
+OUT: IN: 1:1 2:1OUT: 
+IN: 1:1 2:OUT: 0
+IN: 1:0 2OUT: :1
+IN: 1:0 2:0

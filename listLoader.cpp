@@ -22,7 +22,7 @@ string reverse_string(string str)
 	return str;
 }
 
-void assign_elements(string content,int gateNumber, list<Schematics> &temp)
+void assign_elements(string &content,int gateNumber, list<Schematics> &temp)
 {
 
 	list<Schematics>::iterator it = temp.begin();
@@ -42,7 +42,7 @@ void assign_elements(string content,int gateNumber, list<Schematics> &temp)
 			content.pop_back();
 			gateNumber--;
 			if (gateNumber == 0)
-				return;
+				break;
 
 		}
 		while(content.back() !=' ' and content.back() != '\n')
@@ -81,6 +81,13 @@ void assign_elements(string content,int gateNumber, list<Schematics> &temp)
 		}
 		
 	}
+	piece.clear();
+	while(content.back()!='\n')
+	{
+		piece.push_back(content.back());
+		content.pop_back();
+	}
+	content=reverse_string(piece);
 }
 
 void choose_input(int in_knot1, int in_knot2, bool in_state1, bool in_state2, list<Schematics>& temp)
