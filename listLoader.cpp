@@ -6,9 +6,6 @@ Schematics addElementToList(string role, int in_knot1,bool in_val1,int in_knot2,
 	list<Schematics> gateList;
 	list<Schematics>::iterator it = gateList.begin();
 	gateList.emplace_back(Schematics(role,in_knot1,in_val1,in_knot2,in_val2,out_knot,out_val));
-
-	
-	Schematics lul = gateList.back();
 	it = gateList.begin();
 	return *it;
 }
@@ -115,8 +112,7 @@ void choose_input(int in_knot1, int in_knot2, bool in_state1, bool in_state2, li
 }
 
 void assign_values(list<Schematics> &temp, string &str)
-{/*create secondary list which includes all the states and pass it on logic operator which
-	find the elements from that string in list  */
+{
 	auto it = temp.begin();
 	int switching_value = 0;
 	string line;

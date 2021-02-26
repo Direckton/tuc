@@ -13,7 +13,7 @@ using namespace std;
 int main(int argc, const char **argv)
 {
 	
-	argparse::ArgumentParser program("program name");
+	argparse::ArgumentParser program("Basically_tuc is a program used to solve circuits based on 2 input logic gates.");
 
 	program.add_argument("-u")
 		.required()
@@ -38,8 +38,9 @@ int main(int argc, const char **argv)
 
 	auto layout_file = program.get<string>("-u");
 	auto values_file = program.get<string>("-i");
-	auto output_file = program.get<string>("-o");
+	auto output_file = program.get<string>("-o"); 
 	
+	cout << "Starting..." << endl;
 	
 	int gateNumber = gate_counter(layout_file);
 	string content = read_file_content(layout_file);
@@ -47,11 +48,15 @@ int main(int argc, const char **argv)
 	string output;
 	output.assign(values);
 
+	cout << "File content read correctly" << endl;
+	
 	output = create_input(output);
 	
 	list<Schematics> temp;
 	list<Schematics>::iterator it= temp.begin();
 	assign_elements(content, gateNumber,temp);
+
+	cout << "List created" << endl;
 	
 	string output_values;
 	while (!values.empty())
@@ -66,7 +71,11 @@ int main(int argc, const char **argv)
 			output_values.push_back('0');
 	}
 
+	cout << "Values calculated" << endl;
+	
 	create_output(output, content, output_values);
 	save_output_to_file(output_file,output);
+
+	cout << "Output file generated" << endl;
 	return 0;
 } 
