@@ -45,7 +45,6 @@ void create_output(string& output, string content, string output_values)
 		}
 		i--;
 	}
-	
 }
 
 void save_output_to_file(string filestream, string str)

@@ -30,7 +30,6 @@ bool find_value( list<Schematics> temp, int input_knot)
 	while (it->output_knot != input_knot)
 		it++;
 	return it->output_val;
-	
 }
 
 void calculate_outputs(list<Schematics> &temp, int in_knot1, int in_knot2)
@@ -74,7 +73,4 @@ void calculate_outputs(list<Schematics> &temp, int in_knot1, int in_knot2)
 		}
 		
 	}
-
-	
-	
 }

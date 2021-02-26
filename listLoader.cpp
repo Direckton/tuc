@@ -11,7 +11,7 @@
 Schematics addElementToList(string role, int in_knot1,bool in_val1,int in_knot2,bool in_val2,int out_knot,bool out_val)
 {
 	list<Schematics> gateList;
-	list<Schematics>::iterator it = gateList.begin();
+	auto it = gateList.begin();
 	gateList.emplace_back(Schematics(role,in_knot1,in_val1,in_knot2,in_val2,out_knot,out_val));
 	it = gateList.begin();
 	return *it;
@@ -28,8 +28,7 @@ string reverse_string(string str)
 
 void assign_elements(string &content,int gateNumber, list<Schematics> &temp)
 {
-
-	list<Schematics>::iterator it = temp.begin();
+	auto it = temp.begin();
 	int switching_value = 0;
 	string piece;
 	int out_knot = 0;
@@ -47,7 +46,6 @@ void assign_elements(string &content,int gateNumber, list<Schematics> &temp)
 			gateNumber--;
 			if (gateNumber == 0)
 				break;
-
 		}
 		while(content.back() !=' ' and content.back() != '\n')
 		{
@@ -96,7 +94,6 @@ void assign_elements(string &content,int gateNumber, list<Schematics> &temp)
 
 void choose_input(int in_knot1, int in_knot2, bool in_state1, bool in_state2, list<Schematics>& temp)
 {
-
 	auto it = temp.begin();
 	int break_value = 0;
 	while (it != temp.end())
@@ -181,7 +178,6 @@ void assign_values(list<Schematics> &temp, string &str)
 
 int extract_output_int(string content)
 {
-	int output;
 	string temp;
 	while(content.back()!=' ')
 	{
