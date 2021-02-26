@@ -11,9 +11,9 @@
 #define LISTLOADER_H
 
 #include <string>
-#include <iostream>
 #include <list>
 #include "fileOpener.h"
+
 using namespace std;
 
 /**

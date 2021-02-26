@@ -1,3 +1,10 @@
+/** @file */
+
+/*
+ Basically_tuc
+
+ Projekt ppk
+ */
 #include "OutputingFile.h"
 
 string create_input(string input)

@@ -1,5 +1,11 @@
+/** @file */
+
+/*
+ Basically_tuc
+
+ Projekt ppk
+ */
 #include "fileOpener.h"
-#include "listLoader.h"
 
 using namespace std;
 

@@ -1,3 +1,10 @@
+/** @file */
+
+/*
+ Basically_tuc
+
+ Projekt ppk
+ */
 #include "listLoader.h"
 
 

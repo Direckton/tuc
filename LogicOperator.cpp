@@ -1,3 +1,10 @@
+/** @file */
+
+/*
+ Basically_tuc
+
+ Projekt ppk
+ */
 #include "LogicOperator.h"
 
 bool gate(bool state1, bool state2, string gate)
