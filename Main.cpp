@@ -1,8 +1,7 @@
 #include <iostream>
-#include <fstream>
 #include <string>
 #include <list>
-#include <cmath>
+#include "argparse.hpp"
 #include "fileOpener.h"
 #include "listLoader.h"
 #include "LogicOperator.h"
@@ -11,11 +10,40 @@
 using namespace std;
 
 
-int main()
+int main(int argc, const char **argv)
 {
-	int gateNumber = gate_counter("layout.txt");
-	string content = read_file_content("layout.txt");
-	string values = read_file_content("values.txt");
+	
+	argparse::ArgumentParser program("program name");
+
+	program.add_argument("-u")
+		.required()
+		.help("Please enter gate layout file name");
+
+	program.add_argument("-i")
+		.required()
+		.help("Please enter input values file name");
+
+	program.add_argument("-o")
+		.required()
+		.help("Please enter output file name");
+
+	try {
+		program.parse_args(argc, argv);   
+	}
+	catch (const std::runtime_error& err) {
+		std::cout << err.what() << std::endl;
+		std::cout << program;
+		exit(0);
+	}
+
+	auto layout_file = program.get<string>("-u");
+	auto values_file = program.get<string>("-i");
+	auto output_file = program.get<string>("-o");
+	
+	
+	int gateNumber = gate_counter(layout_file);
+	string content = read_file_content(layout_file);
+	string values = read_file_content(values_file);
 	string output;
 	output.assign(values);
 
@@ -39,6 +67,6 @@ int main()
 	}
 
 	create_output(output, content, output_values);
-	save_output_to_file("output.txt",output);
+	save_output_to_file(output_file,output);
 	return 0;
 } 
