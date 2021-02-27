@@ -50,7 +50,7 @@ struct Schematics
  @param input_val1 stan wêz³a wyjœciowego bramki logicznej
  @return wskaŸnik na iterator listy
  */
-Schematics addElementToList(string role, int input_knot1, bool input_val1, int input_knot2, bool input_val2, int output_knot, bool output_val);
+Schematics add_element_to_list(string role, int input_knot1, bool input_val1, int input_knot2, bool input_val2, int output_knot, bool output_val);
 
 /** Funkcja odwracaj¹ca string
  @param str string wejœciowt
@@ -73,7 +73,7 @@ void assign_elements(string &content, int gateNumber, list<Schematics> &temp);
  @param input_val2 stan drugiego wêz³a bramki logicznej
  @param temp lista bramek logicznych
  */
-void choose_input(int in_knot1, int in_knot2, bool in_state1, bool in_state2, list<Schematics>& temp);
+void choose_input(int inputKnot1, int inputKnot2, bool inputState1, bool inputState2, list<Schematics>& temp);
 
 /** Funkcja wczytuj¹ca stany wejœciowe wybranych bramek
 @param temp lista bramek logicznych

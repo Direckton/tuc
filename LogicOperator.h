@@ -26,15 +26,15 @@ bool gate(bool state1, bool state2, string gate);
 
 /**Funkcja szukaj¹ca konkretnej wartoœci na wêŸle wyjœciowym bramki
 @param temp lista bramek logicznych
-@param input_knot wêze³ szukanej wartoœci
+@param inputKnot wêze³ szukanej wartoœci
 @return stan na zadanym wêŸle
 */
-bool find_value(list<Schematics> temp, int input_knot);
+bool find_value(list<Schematics> temp, int inputKnot);
 /**Funkcja przypisuj¹ca wartœci wyjœciowe bramk¹
  @param temp lista bramek
- @param in_knot1 pierwszy wêze³ wejœciowy z wiadomym stanem
- @param in_knot2 drugi wêze³ wejœciowy z wiadomym stanem
+ @param inputKnot1 pierwszy wêze³ wejœciowy z wiadomym stanem
+ @param inputKnot2 drugi wêze³ wejœciowy z wiadomym stanem
  */
-void calculate_outputs(list<Schematics>& temp, int in_knot1, int in_knot2);
+void calculate_outputs(list<Schematics>& temp, int inputKnot1, int inputKnot2);
 
 #endif

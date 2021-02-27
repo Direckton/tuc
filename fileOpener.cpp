@@ -5,7 +5,7 @@
 
  Projekt ppk
  */
-#include "fileOpener.h"
+#include "FileOpener.h"
 
 using namespace std;
 
@@ -40,7 +40,9 @@ int gate_counter(string fileName)
 	{
 		char enter = count.back();
 		if (enter == '\n')	//detect new line
+		{
 			i++;
+		}
 		count.pop_back();
 	}
 	return i;

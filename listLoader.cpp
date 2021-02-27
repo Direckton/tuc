@@ -5,10 +5,10 @@
 
  Projekt ppk
  */
-#include "listLoader.h"
+#include "ListLoader.h"
 
 
-Schematics addElementToList(string role, int in_knot1,bool in_val1,int in_knot2,bool in_val2,int out_knot,bool out_val)
+Schematics add_element_to_list(string role, int in_knot1,bool in_val1,int in_knot2,bool in_val2,int out_knot,bool out_val)
 {
 	list<Schematics> gateList;
 	auto it = gateList.begin();
@@ -19,33 +19,33 @@ Schematics addElementToList(string role, int in_knot1,bool in_val1,int in_knot2,
 
 string reverse_string(string str)
 {
-	int character_count = str.length();
+	int characterCount = str.length();
 
-	for (int i = 0; i < character_count / 2; i++)
-		swap(str[i], str[character_count - i - 1]);
+	for (int i = 0; i < characterCount / 2; i++)
+	{
+		swap(str[i], str[characterCount - i - 1]);
+	}
 	return str;
 }
 
 void assign_elements(string &content,int gateNumber, list<Schematics> &temp)
 {
 	auto it = temp.begin();
-	int switching_value = 0;
-	string piece;
-	int out_knot = 0;
-	int in_knot1 = 0;
-	int in_knot2 = 0;
-	string role;
+	int switchingValue = 0, outKnot = 0, inputKnot1 = 0, inputKnot2 = 0;
+	string role, piece;
 	
 	while (!content.empty())
 	{
 		if (content.back() == '\n')
 		{
-			switching_value = 0;
-			temp.emplace_front(addElementToList(role, in_knot1, false, in_knot2, false, out_knot, false));
+			switchingValue = 0;
+			temp.emplace_front(add_element_to_list(role, inputKnot1, false, inputKnot2, false, outKnot, false));
 			content.pop_back();
 			gateNumber--;
 			if (gateNumber == 0)
+			{
 				break;
+			}
 		}
 		while(content.back() !=' ' and content.back() != '\n')
 		{
@@ -55,31 +55,39 @@ void assign_elements(string &content,int gateNumber, list<Schematics> &temp)
 
 		piece = reverse_string(piece);
 	
-		switch (switching_value)
+		switch (switchingValue)
 		{
-		case 0:
-			out_knot = stoi(piece);
-			piece.clear();
-			break;
-		case 1:
-			in_knot2 = stoi(piece);
-			piece.clear();
-			break;
-		case 2:
-			in_knot1 = stoi(piece);
-			piece.clear();
-			break;
-		case 3:
-			role = piece;
-			piece.clear();
-			switching_value = 0;
-			break;
+			case 0:
+			{
+				outKnot = stoi(piece);
+				piece.clear();
+				break;
+			}
+			case 1:
+			{
+				inputKnot2 = stoi(piece);
+				piece.clear();
+				break;
+			}
+			case 2:
+			{
+				inputKnot1 = stoi(piece);
+				piece.clear();
+				break;
+			}
+			case 3:
+			{
+				role = piece;
+				piece.clear();
+				switchingValue = 0;
+				break;
+			}
 		}
 
 		if (content.back() == ' ')
 		{
 			content.pop_back();
-			switching_value++;
+			switchingValue++;
 		}
 		
 	}
@@ -92,38 +100,39 @@ void assign_elements(string &content,int gateNumber, list<Schematics> &temp)
 	content=reverse_string(piece);
 }
 
-void choose_input(int in_knot1, int in_knot2, bool in_state1, bool in_state2, list<Schematics>& temp)
+void choose_input(int inputKnot1, int inputKnot2, bool inputState1, bool inputState2, list<Schematics>& temp)
 {
 	auto it = temp.begin();
 	int break_value = 0;
 	while (it != temp.end())
 	{
-		if (in_knot1 == it->input_knot1)
+		if (inputKnot1 == it->input_knot1)
 		{
-			it->input_val1 = in_state1;
+			it->input_val1 = inputState1;
 			break_value++;
 		}
-		if (in_knot2 == it->input_knot2)
+		if (inputKnot2 == it->input_knot2)
 		{
-			it->input_val2 = in_state2;
+			it->input_val2 = inputState2;
 			break_value++;
 		}
-		if (in_knot1 != it->input_knot1 or in_knot2 != it->input_knot2)
+		if (inputKnot1 != it->input_knot1 or inputKnot2 != it->input_knot2)
+		{
 			it++;
+		}
 		if (break_value == 2)
+		{
 			return;
+		}
 	}
 }
 
 void assign_values(list<Schematics> &temp, string &str)
 {
 	auto it = temp.begin();
-	int switching_value = 0;
+	int switching_value = 0, in_knot1 = 0, in_knot2 = 0;
+	bool inputState1=true, inputState2 = true;
 	string line;
-	int in_knot1 = 0;
-	int in_knot2 = 0;
-	bool in_state1=true;
-	bool in_state2=true;
 	
 	while (!str.empty())
 	{
@@ -132,7 +141,7 @@ void assign_values(list<Schematics> &temp, string &str)
 			line.clear();
 			str.pop_back();
 			switching_value = 0;
-			choose_input(in_knot1, in_knot2, in_state1, in_state2, temp);
+			choose_input(in_knot1, in_knot2, inputState1, inputState2, temp);
 			break;
 		}
 
@@ -147,33 +156,43 @@ void assign_values(list<Schematics> &temp, string &str)
 
 		switch(switching_value)
 		{
-		case 0:
-		in_state2 = stoi(line);
-		switching_value++;
-		str.pop_back();
-		line.clear();
-		break;
-		case 1:
-		in_knot2 = stoi(line);
-		switching_value++;
-		str.pop_back();
-		line.clear();
-		break;
-		case 2:
-		in_state1 = stoi(line);
-		switching_value++;
-		str.pop_back();
-		line.clear();
-		break;
-		case 3:
-		in_knot1 = stoi(line);
-		switching_value++;
-		line.clear();
-		break;
+			case 0:
+			{
+				inputState2 = stoi(line);
+				switching_value++;
+				str.pop_back();
+				line.clear();
+				break;
+			}
+			case 1:
+			{
+				in_knot2 = stoi(line);
+				switching_value++;
+				str.pop_back();
+				line.clear();
+				break;
+			}
+			case 2:
+			{
+				inputState1 = stoi(line);
+				switching_value++;
+				str.pop_back();
+				line.clear();
+				break;
+			}
+			case 3:
+			{
+				in_knot1 = stoi(line);
+				switching_value++;
+				line.clear();
+				break;
+			}
 		}	
 	}
-	if(str.empty())
-		choose_input(in_knot1, in_knot2, in_state1, in_state2, temp);
+	if (str.empty())
+	{
+		choose_input(in_knot1, in_knot2, inputState1, inputState2, temp);
+	}
 }
 
 int extract_output_int(string content)

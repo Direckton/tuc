@@ -20,7 +20,7 @@ string create_input(string input)
 	return input;
 }
 
-void create_output(string& output, string content, string output_values)
+void create_output(string& output, string content, string outputValues)
 {
 	int j=0;
 	content.push_back(':');
@@ -30,16 +30,16 @@ void create_output(string& output, string content, string output_values)
 	{
 		if(i==output.length())
 		{
-			content.push_back(output_values.back());
-			output_values.pop_back();
+			content.push_back(outputValues.back());
+			outputValues.pop_back();
 			output.insert(i, content);
 			j++;
 		}
 		if (output[i]=='\n')
 		{
 			content.pop_back();
-			content.push_back(output_values.back());
-			output_values.pop_back();
+			content.push_back(outputValues.back());
+			outputValues.pop_back();
 			output.insert(i, content);
 			j++;
 		}
@@ -47,10 +47,10 @@ void create_output(string& output, string content, string output_values)
 	}
 }
 
-void save_output_to_file(string filestream, string str)
+void save_output_to_file(string fileStream, string str)
 {
 	ofstream fs;
-	fs.open(filestream);
+	fs.open(fileStream);
 	if (fs)
 	{
 		fs << str  << flush;
