@@ -20,6 +20,11 @@ Schematics add_element_to_list(string role, int in_knot1,bool in_val1,int in_kno
 string reverse_string(string str)
 {
 	int characterCount = str.length();
+	if(str.empty())
+	{
+		string errorMessage = { "An error has occurred! Program has encounter an empty string." };
+		throw  errorMessage;
+	}
 
 	for (int i = 0; i < characterCount / 2; i++)
 	{
@@ -33,6 +38,16 @@ void assign_elements(string &content,int gateNumber, list<Schematics> &temp)
 	auto it = temp.begin();
 	int switchingValue = 0, outKnot = 0, inputKnot1 = 0, inputKnot2 = 0;
 	string role, piece;
+	if (content.empty())
+	{
+		string errorMessage = { "An error has occurred! Please make sure the file elements string is not empty." };
+		throw  errorMessage;
+	}
+	if (gateNumber==NULL)
+	{
+		string errorMessage = { "An error has occurred! Program did not detect any gates. Please make sure the file contains correct layout." };
+		throw  errorMessage;
+	}
 	
 	while (!content.empty())
 	{
@@ -82,6 +97,11 @@ void assign_elements(string &content,int gateNumber, list<Schematics> &temp)
 				switchingValue = 0;
 				break;
 			}
+			default:
+			{
+				string errorMessage = { "An error has occurred! Gate has too many inputs! Please make sure gates are 2 input only." };
+				throw  errorMessage;
+			}
 		}
 
 		if (content.back() == ' ')
@@ -98,6 +118,11 @@ void assign_elements(string &content,int gateNumber, list<Schematics> &temp)
 		content.pop_back();
 	}
 	content=reverse_string(piece);
+	if(temp.empty())
+	{
+		string errorMessage = { "An error has occurred! Loading gates layout has failed" };
+		throw  errorMessage;
+	}
 }
 
 void choose_input(int inputKnot1, int inputKnot2, bool inputState1, bool inputState2, list<Schematics>& temp)
@@ -125,10 +150,25 @@ void choose_input(int inputKnot1, int inputKnot2, bool inputState1, bool inputSt
 			return;
 		}
 	}
+	if(it == temp.end() and break_value!=2)
+	{
+		string errorMessage = { "An error has occurred! Program was not able to load correct states to circuit node" };
+		throw  errorMessage;
+	}
 }
 
 void assign_values(list<Schematics> &temp, string &str)
 {
+	if (str.empty())
+	{
+		string errorMessage = { "An error has occurred! Please make sure the file elements string is not empty." };
+		throw  errorMessage;
+	}
+	if (temp.empty())
+	{
+		string errorMessage = { "An error has occurred! Please make sure the list of elements is not empty." };
+		throw  errorMessage;
+	}
 	auto it = temp.begin();
 	int switching_value = 0, in_knot1 = 0, in_knot2 = 0;
 	bool inputState1=true, inputState2 = true;
@@ -187,7 +227,13 @@ void assign_values(list<Schematics> &temp, string &str)
 				line.clear();
 				break;
 			}
-		}	
+			default:
+			{
+				string errorMessage = { "An error has occurred! Program was not able to load correct states to circuit node" };
+				throw  errorMessage;
+			}
+		}
+		
 	}
 	if (str.empty())
 	{
@@ -197,6 +243,12 @@ void assign_values(list<Schematics> &temp, string &str)
 
 int extract_output_int(string content)
 {
+	if(content.empty())
+	{
+		string errorMessage = { "An error has occurred! Program was not able assign output node." };
+		throw  errorMessage;
+	}
+	
 	string temp;
 	while(content.back()!=' ')
 	{

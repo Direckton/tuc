@@ -16,7 +16,7 @@ string create_input(string input)
 		int p = i * 7 + i;
 		input.insert(p, "IN: ");
 	}
-	
+
 	return input;
 }
 

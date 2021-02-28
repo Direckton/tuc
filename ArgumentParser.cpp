@@ -10,9 +10,11 @@ void help_message(string errorMessage)
 	cout << "Basically_tuc is a program used to solve circuits based on 2 input logic gates." << endl;
 	cout << endl;
 	cout << "To correctly run this program, please use arguments listed below:" << endl;
-	cout << "-u [program layout file]" << endl;
-	cout << "-i [program starting inputs file]" << endl;
-	cout << "-o [program output file]" << endl;
+	cout << "-u [program layout file]		points to layout file directory" << endl;		//weird tabulators due to more readable format in console
+	cout << "-i [program starting inputs file]	points to input states file directory" << endl;
+	cout << "-o [program output file]		points to output file directory" << endl;
+	cout << "-h					displays this instruction" << endl;
+	throw;
 }
 
 void help(map<int,string> parser, int argc)
@@ -37,7 +39,7 @@ void exceptions(map<int,string> parser)
 			if (parser[i+1].empty() or parser[i + 1] == "-i" or parser[i + 1] == "-o")
 			{
 				help_message("Argument '-u' cannot be empty");
-				break;
+				throw;
 			}
 		}
 		else if (parser[i] == "-i")
@@ -45,7 +47,7 @@ void exceptions(map<int,string> parser)
 			if (parser[i + 1].empty() or parser[i+1] == "-u" or parser[i + 1] == "-o")
 			{
 				help_message("Argument '-i' cannot be empty");
-				break;
+				throw;
 			}
 		}
 		else if (parser[i] == "-o" or parser[i + 1] == "-i" or parser[i + 1] == "-u")
@@ -53,7 +55,7 @@ void exceptions(map<int,string> parser)
 			if (parser[i + 1].empty())
 			{
 				help_message("Argument '-o' cannot be empty");
-				break;
+				throw;
 			}
 		}
 		else if (parser[i] == "-h")
@@ -62,8 +64,7 @@ void exceptions(map<int,string> parser)
 		}
 		else
 		{
-			help_message("Wrong argument specified");
-			break;
+			throw "Wrong argument specified";
 		}
 	}
 }

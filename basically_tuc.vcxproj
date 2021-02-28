@@ -143,6 +143,7 @@
   <ItemGroup>
     <ClCompile Include="ArgumentParser.cpp" />
     <ClCompile Include="FileOpener.cpp" />
+    <ClCompile Include="FunctionHandler.cpp" />
     <ClCompile Include="ListLoader.cpp" />
     <ClCompile Include="LogicOperator.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -151,6 +152,7 @@
   <ItemGroup>
     <ClInclude Include="ArgumentParser.h" />
     <ClInclude Include="FileOpener.h" />
+    <ClInclude Include="FunctionHandler.h" />
     <ClInclude Include="ListLoader.h" />
     <ClInclude Include="LogicOperator.h" />
     <ClInclude Include="OutputingFile.h" />

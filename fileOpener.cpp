@@ -13,7 +13,7 @@ string read_file_content(string fileName)
 {
 	string line;
 	char content;
-
+	
 	fstream fileStream;
 	fileStream.open(fileName);
 	if(fileStream)
@@ -25,8 +25,21 @@ string read_file_content(string fileName)
 		}
 		
 	}
+	else
+	{
+		string errorMessage = { "An error has occurred! Please make sure the file:  exist." };
+		errorMessage.insert(50, fileName);
+		throw  errorMessage;
+	}
 	fileStream.close();
 	line.pop_back();	//gets rid of doubled element form while loop
+	
+	if (line.empty())
+	{
+		string errorMessage = { "An error has occurred! Please make sure the file:  is not empty." };
+		errorMessage.insert(50, fileName);
+		throw  errorMessage;
+	}
 
 	return line;
 }
