@@ -5,7 +5,7 @@
 
  Projekt ppk
  */
- //Plik nag³ówkowy funkcji listLoader.cpp
+ //Plik nag³ówkowy funkcji ListLoader.cpp
 
 #ifndef LISTLOADER_H
 #define LISTLOADER_H

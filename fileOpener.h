@@ -5,7 +5,7 @@
 
  Projekt ppk
  */
- //Plik nag³ówkowy funkcji fileOpener.cpp
+ //Plik nag³ówkowy funkcji FileOpener.cpp
 
 #ifndef FILEOPENER_H
 #define FILEOPENER_H

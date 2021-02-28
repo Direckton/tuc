@@ -1,3 +1,10 @@
+/** @file */
+
+/*
+ Basically_tuc
+
+ Projekt ppk
+ */
 #include "FunctionHandler.h"
 
 void run_program(const string& layoutFile, const string& valuesFile, const string& outputFile)

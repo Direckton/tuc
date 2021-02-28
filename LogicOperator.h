@@ -5,7 +5,7 @@
 
  Projekt ppk
  */
- //Plik nag³ówkowy funkcji fileOpener.cpp
+ //Plik nag³ówkowy funkcji LogicOperator.cpp
 
 #ifndef LOGICOPERATOR_H
 #define LOGICOPERATOR_H
